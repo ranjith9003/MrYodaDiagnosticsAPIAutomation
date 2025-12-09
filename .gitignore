@@ -1,0 +1,50 @@
+# Compiled class files
+*.class
+target/
+*.jar
+*.war
+*.ear
+
+# Log files
+*.log
+logs/
+
+# TestNG
+test-output/
+*.xml.bak
+
+# Maven
+.mvn/
+mvn.cmd
+mvnw
+mvnw.cmd
+
+# IDE
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+*.swp
+*.swo
+.DS_Store
+
+# Reports
+reports/
+allure-results/
+allure-report/
+extent-reports/
+screenshots/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Other
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
