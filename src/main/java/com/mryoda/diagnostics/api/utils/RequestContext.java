@@ -1,11 +1,15 @@
 package com.mryoda.diagnostics.api.utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RequestContext {
 
     private static final ThreadLocal<String> token = new ThreadLocal<>();
     private static final ThreadLocal<String> mobile = new ThreadLocal<>();
     private static final ThreadLocal<String> userGuid = new ThreadLocal<>();
     private static final ThreadLocal<String> userId = new ThreadLocal<>();
+    private static final Map<String, String> locations = new HashMap<>();
 
     // Token handler
     public static void setToken(String value) {
@@ -41,6 +45,18 @@ public class RequestContext {
 
     public static String getUserId() {
         return userId.get();
+    }
+
+    public static void storeLocation(String id, String title) {
+        locations.put(title, id);
+    }
+
+    public static String getLocationId(String title) {
+        return locations.get(title);
+    }
+
+    public static Map<String, String> getAllLocations() {
+        return locations;
     }
 
     // Clear all after suite/test

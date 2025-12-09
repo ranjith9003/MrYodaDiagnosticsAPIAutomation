@@ -8,6 +8,7 @@ public class APIEndpoints {
     // OTP Endpoints
     public static final String OTP_REQUEST = "/otps/getOtp";
     public static final String USER_CREATE = "/users/addUser";
+    public static final String GET_LOCATION = "/tests/getlocations";
 
     
     // User/Profile Endpoints
