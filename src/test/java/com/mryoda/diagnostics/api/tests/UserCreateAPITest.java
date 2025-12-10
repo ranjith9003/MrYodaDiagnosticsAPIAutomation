@@ -1,7 +1,7 @@
 package com.mryoda.diagnostics.api.tests;
 
 import com.mryoda.diagnostics.api.base.BaseTest;
-import com.mryoda.diagnostics.api.config.ConfigLoader;
+import com.mryoda.diagnostics.api.builders.RequestBuilder;
 import com.mryoda.diagnostics.api.endpoints.APIEndpoints;
 import com.mryoda.diagnostics.api.payloads.UserPayloadBuilder;
 import com.mryoda.diagnostics.api.utils.AssertionUtil;
@@ -11,53 +11,94 @@ import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.anyOf;
-import static org.hamcrest.Matchers.is;
-
+/**
+ * User Create API Test - Tests user registration functionality
+ */
 public class UserCreateAPITest extends BaseTest {
 
-	@Test(priority = 1)
-	public void testUserRegistration_CreateNewUser() {
+    @Test(priority = 1)
+    public void testUserRegistration_CreateNewUser() {
 
-	    System.out.println("\n========== USER REGISTRATION START ==========");
+        System.out.println("\n╔══════════════════════════════════════════════════════════╗");
+        System.out.println("║           USER REGISTRATION TEST                         ║");
+        System.out.println("╚══════════════════════════════════════════════════════════╝");
 
-	    String mobile = "9" + RandomDataUtil.getRandomMobile().substring(1);
-	    RequestContext.setMobile(mobile);
+        // Generate random mobile
+        String mobile = "9" + RandomDataUtil.getRandomMobile().substring(1);
+        RequestContext.setMobile(mobile);
 
-	    JSONObject req = UserPayloadBuilder.buildNewUserPayload();
-	    System.out.println("📩 Registration Request:\n" + req.toString(2));
+        System.out.println("\n📱 Generated Mobile: " + mobile);
 
-	    Response response =
-	            given()
-	                    .contentType("application/json")
-	                    .log().all()
-	                    .body(req.toString())
-	            .when()
-	                    .post(APIEndpoints.USER_CREATE)
-	            .then()
-	                    .log().all()
-	                    .statusCode(anyOf(is(201), is(200)))
-	                    .extract().response();
+        // Build user payload
+        JSONObject req = UserPayloadBuilder.buildNewUserPayload();
+        req.put("mobile", mobile);
 
-	    AssertionUtil.verifyEquals(
-	            response.jsonPath().getString("data.mobile"),
-	            mobile,
-	            "Mobile Number"
-	    );
+        System.out.println("\n➡️ USER REGISTRATION REQUEST:");
+        System.out.println(req.toString(2));
 
-	    String guid = response.jsonPath().getString("data.guid");
-	    AssertionUtil.verifyNotNull(guid, "GUID");
-	    RequestContext.setUserGuid(guid);
+        // Make registration API call
+        Response response = new RequestBuilder()
+                .setEndpoint(APIEndpoints.USER_CREATE)
+                .setRequestBody(req.toString())
+                .expectStatus(201)
+                .post();
 
-	    String userId = response.jsonPath().getString("data.id");
-	    AssertionUtil.verifyNotNull(userId, "User ID");
-	    RequestContext.setUserId(userId);
+        System.out.println("\n✅ USER REGISTRATION RESPONSE RECEIVED");
 
-	    System.out.println("🟢 USER REGISTERED SUCCESSFULLY");
-	    System.out.println("GUID: " + guid);
-	    System.out.println("UserId: " + userId);
-	    System.out.println("========== USER REGISTRATION END ==========\n");
-	}
+        // ---------------------------------------------------
+        // EXTRACT ALL PARAMETERS from response
+        // ---------------------------------------------------
+        String userId = response.jsonPath().getString("data.guid");
+        String firstName = response.jsonPath().getString("data.first_name");
+        String lastName = response.jsonPath().getString("data.last_name");
+        String email = response.jsonPath().getString("data.email");
+        String gender = response.jsonPath().getString("data.gender");
+        String dob = response.jsonPath().getString("data.dob");
+        String responseMobile = response.jsonPath().getString("data.mobile");
+        String countryCode = response.jsonPath().getString("data.country_code");
+        String status = response.jsonPath().getString("data.status");
+        String createdAt = response.jsonPath().getString("data.createdAt");
+        String updatedAt = response.jsonPath().getString("data.updatedAt");
 
+        // Print all extracted parameters
+        System.out.println("\n🔍 ===== EXTRACTED USER REGISTRATION DATA =====");
+        System.out.println("🆔 User ID (GUID)  : " + userId);
+        System.out.println("👤 First Name      : " + firstName);
+        System.out.println("👤 Last Name       : " + lastName);
+        System.out.println("📧 Email           : " + email);
+        System.out.println("⚧  Gender          : " + gender);
+        System.out.println("🎂 DOB             : " + dob);
+        System.out.println("📱 Mobile          : " + responseMobile);
+        System.out.println("🌍 Country Code    : " + countryCode);
+        System.out.println("📍 Status          : " + status);
+        System.out.println("📅 Created At      : " + createdAt);
+        System.out.println("📅 Updated At      : " + updatedAt);
+        System.out.println("==============================================\n");
+
+        // ---------------------------------------------------
+        // VALIDATIONS
+        // ---------------------------------------------------
+        AssertionUtil.verifyEquals(responseMobile, mobile, "Mobile Number must match");
+        AssertionUtil.verifyNotNull(userId, "User ID must not be null");
+        AssertionUtil.verifyNotNull(firstName, "First Name must not be null");
+        AssertionUtil.verifyNotNull(lastName, "Last Name must not be null");
+        AssertionUtil.verifyNotNull(email, "Email must not be null");
+
+        // ---------------------------------------------------
+        // STORE ALL PARAMETERS in RequestContext (Generic)
+        // ---------------------------------------------------
+        RequestContext.setUserId(userId);
+        RequestContext.setFirstName(firstName);
+        RequestContext.setLastName(lastName);
+
+        System.out.println("💾 STORED IN RequestContext (GENERIC):");
+        System.out.println("✔ User ID: " + userId);
+        System.out.println("✔ First Name: " + firstName);
+        System.out.println("✔ Last Name: " + lastName);
+        System.out.println("✔ Mobile: " + mobile + " (already stored)");
+
+        System.out.println("\n╔══════════════════════════════════════════════════════════╗");
+        System.out.println("║        USER REGISTRATION COMPLETED ✅                     ║");
+        System.out.println("╚══════════════════════════════════════════════════════════╝");
+    }
 }

@@ -40,8 +40,4 @@ public class BaseTest {
      * Helper method for tests that need authentication
      * Call this in your test's @BeforeMethod or in the test itself
      */
-    protected void setupAuthentication(String token) {
-        RequestContext.setToken(token);
-        LoggerUtil.info("Authentication token configured");
-    }
-}
+   }

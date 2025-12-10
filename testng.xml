@@ -2,17 +2,21 @@
 
 <suite name="MrYoda Diagnostics API Test Suite" verbose="1">
 
-    <listeners>
-        <listener class-name="com.mryoda.diagnostics.api.listeners.TestListener"/>
-    </listeners>
+	<listeners>
+		<listener
+			class-name="com.mryoda.diagnostics.api.listeners.TestListener" />
+	</listeners>
 
-    <test name="User Onboarding Flow Tests">
-        <classes>
-            <class name="com.mryoda.diagnostics.api.tests.LoginAPITest"/>
-            <class name="com.mryoda.diagnostics.api.tests.UserCreateAPITest"/>
-            <class name="com.mryoda.diagnostics.api.tests.LocationAPITest"/>
-            
-        </classes>
-    </test>
+	<test name="User Onboarding Flow Tests">
+		<classes>
+			<class name="com.mryoda.diagnostics.api.tests.LoginAPITest" />
+			<class
+				name="com.mryoda.diagnostics.api.tests.UserCreateAPITest" />
+			<class name="com.mryoda.diagnostics.api.tests.LocationAPITest" />
+			<class
+				name="com.mryoda.diagnostics.api.tests.GlobalSearchAPITest" />
+
+		</classes>
+	</test>
 
 </suite>

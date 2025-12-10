@@ -3,35 +3,43 @@ package com.mryoda.diagnostics.api.builders;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import io.qameta.allure.restassured.AllureRestAssured;
-import com.mryoda.diagnostics.api.config.ConfigLoader;
-import com.mryoda.diagnostics.api.utils.LoggerUtil;
-import com.mryoda.diagnostics.api.utils.RequestContext;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Fully updated RequestBuilder.
+ * - Supports fluent method chaining
+ * - Backward compatible (newRequest(), given())
+ * - Centralized handling of headers, query params, body
+ * - Optional expectedStatus assertion
+ */
 public class RequestBuilder {
 
-    private RequestSpecification requestSpec;
-    private String baseUri;
     private String endpoint;
-    private Map<String, Object> queryParams;
-    private Map<String, Object> pathParams;
-    private Map<String, String> headers;
-    private Object requestBody;
+    private Object body;
+    private final Map<String, String> headers = new HashMap<>();
+    private Map<String, ?> queryParams = new HashMap<>();
+    private Integer expectedStatus = null;
+    private final Map<String, Object> bodyParams = new HashMap<>();
 
-    public RequestBuilder() {
-        this.requestSpec = RestAssured.given();
-        this.queryParams = new HashMap<>();
-        this.pathParams = new HashMap<>();
-        this.headers = new HashMap<>();
-        this.requestSpec.filter(new AllureRestAssured());
-        this.requestSpec.relaxedHTTPSValidation();
+    public RequestBuilder() {}
+
+    // -----------------------------
+    // FLUENT SETTERS
+    // -----------------------------
+    public RequestBuilder addBodyParam(String key, int value) {
+        bodyParams.put(key, value);
+        return this;
     }
 
-    public RequestBuilder setBaseUri(String baseUri) {
-        this.baseUri = baseUri;
+    public RequestBuilder addBodyParam(String key, String value) {
+        bodyParams.put(key, value);
+        return this;
+    }
+
+    public RequestBuilder addBodyParam(String key, Object value) {
+        bodyParams.put(key, value);
         return this;
     }
 
@@ -40,95 +48,115 @@ public class RequestBuilder {
         return this;
     }
 
-    public RequestBuilder addQueryParam(String key, Object value) {
-        this.queryParams.put(key, value);
-        return this;
-    }
-
-    public RequestBuilder addPathParam(String key, Object value) {
-        this.pathParams.put(key, value);
-        return this;
-    }
-
-    public RequestBuilder addHeader(String key, String value) {
-        this.headers.put(key, value);
-        return this;
-    }
-
     public RequestBuilder setRequestBody(Object body) {
-        this.requestBody = body;
+        this.body = body;
         return this;
     }
 
-    public RequestBuilder addAuthToken(String token) {
-        this.headers.put("Authorization", "Bearer " + token);
+    public RequestBuilder addHeader(String name, String value) {
+        this.headers.put(name, value);
         return this;
     }
 
-    private RequestSpecification build() {
+    public RequestBuilder addHeaders(Map<String, String> headers) {
+        this.headers.putAll(headers);
+        return this;
+    }
 
-        requestSpec.baseUri(baseUri != null ? baseUri : ConfigLoader.getConfig().baseUrl());
+    public RequestBuilder setQueryParams(Map<String, ?> params) {
+        this.queryParams = params;
+        return this;
+    }
 
-        // Inject Token
-        String token = RequestContext.getToken();
-        if (token != null && !token.isEmpty()) {
-            requestSpec.header("Authorization", "Bearer " + token);
-        }
+    public RequestBuilder expectStatus(int status) {
+        this.expectedStatus = status;
+        return this;
+    }
+
+    // -----------------------------
+    // BACKWARD COMPATIBLE HELPERS
+    // -----------------------------
+    /**
+     * Allows old legacy code using requestBuilder.newRequest() to still work.
+     */
+    public RequestSpecification newRequest() {
+        return prepare();
+    }
+
+    /**
+     * Alias for newRequest — ensures compatibility with requestBuilder.given().
+     */
+    public RequestSpecification given() {
+        return prepare();
+    }
+
+    // -----------------------------
+    // INTERNAL PREPARATION
+    // -----------------------------
+    private RequestSpecification prepare() {
+        RequestSpecification req = RestAssured.given()
+                .relaxedHTTPSValidation()
+                .log().ifValidationFails();
 
         if (!headers.isEmpty()) {
-            requestSpec.headers(headers);
+            req.headers(headers);
         }
 
-        if (!queryParams.isEmpty()) {
-            requestSpec.queryParams(queryParams);
+     // priority: bodyParams → setRequestBody()
+        if (!bodyParams.isEmpty()) {
+            req.contentType("application/json");
+            req.body(bodyParams);
+        } else if (body != null) {
+            req.contentType("application/json");
+            req.body(body);
         }
 
-        if (!pathParams.isEmpty()) {
-            requestSpec.pathParams(pathParams);
+
+        if (queryParams != null && !queryParams.isEmpty()) {
+            req.queryParams(queryParams);
         }
 
-        if (requestBody != null) {
-            requestSpec.body(requestBody);
-        }
+        return req;
+    }
 
-        LoggerUtil.info("\n=========== REQUEST ===========");
-        LoggerUtil.info("URI: " +
-                (baseUri != null ? baseUri : ConfigLoader.getConfig().baseUrl())
-                + endpoint);
-        LoggerUtil.info("Headers: " + headers);
-        LoggerUtil.info("Query: " + queryParams);
-        LoggerUtil.info("Path: " + pathParams);
-        LoggerUtil.info("Body: " + requestBody);
-        LoggerUtil.info("================================");
-
-        return requestSpec;
+    // -----------------------------
+    // HTTP VERBS
+    // -----------------------------
+    public Response post() {
+        Response r = prepare().when().post(endpoint).then().extract().response();
+        assertExpectedStatus(r);
+        return r;
     }
 
     public Response get() {
-        return build().get(endpoint);
-    }
-
-    public Response post() {
-        return build().post(endpoint);
+        Response r = prepare().when().get(endpoint).then().extract().response();
+        assertExpectedStatus(r);
+        return r;
     }
 
     public Response put() {
-        return build().put(endpoint);
-    }
-
-    public Response patch() {
-        return build().patch(endpoint);
+        Response r = prepare().when().put(endpoint).then().extract().response();
+        assertExpectedStatus(r);
+        return r;
     }
 
     public Response delete() {
-        return build().delete(endpoint);
+        Response r = prepare().when().delete(endpoint).then().extract().response();
+        assertExpectedStatus(r);
+        return r;
     }
 
-    public Response head() {
-        return build().head(endpoint);
-    }
-
-    public Response options() {
-        return build().options(endpoint);
+    // -----------------------------
+    // ASSERT STATUS
+    // -----------------------------
+    private void assertExpectedStatus(Response r) {
+        if (expectedStatus != null && r.getStatusCode() != expectedStatus) {
+            throw new AssertionError(
+                    "Expected HTTP " + expectedStatus +
+                    " but got " + r.getStatusCode() +
+                    " | Endpoint: " + endpoint +
+                    "\nBody:\n" + r.getBody().asString()
+            );
+        }
     }
 }
