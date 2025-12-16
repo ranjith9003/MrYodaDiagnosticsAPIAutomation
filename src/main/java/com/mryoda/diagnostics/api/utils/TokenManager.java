@@ -9,10 +9,14 @@ import org.json.JSONObject;
 public class TokenManager {
 
     // User type constants
-    public static final String MEMBER = "MEMBER";
-    public static final String EXISTING_MEMBER = "EXISTING_MEMBER";
+    public static final String MEMBER = "MEMBER";  // Mobile: 9003730394 - Paid member (10% discount)
+    public static final String NON_MEMBER = "NON_MEMBER";  // Mobile: 8220220227 - NOT a paid member (no discount)
     public static final String NEW_USER = "NEW_USER";
     public static final String GENERIC = "GENERIC";
+    
+    // Deprecated - kept for backward compatibility, but both NON_MEMBER and EXISTING_MEMBER handled the same way
+    @Deprecated
+    public static final String EXISTING_MEMBER = "EXISTING_MEMBER";
 
     /**
      * Generate token with user type - stores all fields in appropriate RequestContext fields
@@ -126,17 +130,18 @@ public class TokenManager {
                 System.out.println("✔ Member User ID: " + userId);
                 break;
 
-            case EXISTING_MEMBER:
-                RequestContext.setExistingMemberToken(token);
-                RequestContext.setExistingMemberFirstName(firstName);
-                RequestContext.setExistingMemberLastName(lastName);
-                RequestContext.setExistingMemberUserId(userId);
+            case NON_MEMBER:
+            case EXISTING_MEMBER:  // Deprecated - for backward compatibility
+                RequestContext.setNonMemberToken(token);
+                RequestContext.setNonMemberFirstName(firstName);
+                RequestContext.setNonMemberLastName(lastName);
+                RequestContext.setNonMemberUserId(userId);
                 
-                System.out.println("💾 STORED INTO RequestContext (EXISTING_MEMBER):");
-                System.out.println("✔ Existing Member Token");
-                System.out.println("✔ Existing Member First Name: " + firstName);
-                System.out.println("✔ Existing Member Last Name: " + lastName);
-                System.out.println("✔ Existing Member User ID: " + userId);
+                System.out.println("💾 STORED INTO RequestContext (NON_MEMBER):");
+                System.out.println("✔ Non-Member Token (Mobile: 8220220227 - NOT a paid member)");
+                System.out.println("✔ Non-Member First Name: " + firstName);
+                System.out.println("✔ Non-Member Last Name: " + lastName);
+                System.out.println("✔ Non-Member User ID: " + userId);
                 break;
 
             case NEW_USER:

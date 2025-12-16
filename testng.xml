@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="MrYoda Diagnostics API Test Suite" verbose="1">
 
 	<listeners>
@@ -13,8 +13,25 @@
 			<class
 				name="com.mryoda.diagnostics.api.tests.UserCreateAPITest" />
 			<class name="com.mryoda.diagnostics.api.tests.LocationAPITest" />
+			<class name="com.mryoda.diagnostics.api.tests.BrandAPITest" />
 			<class
 				name="com.mryoda.diagnostics.api.tests.GlobalSearchAPITest" />
+			<class name="com.mryoda.diagnostics.api.tests.AddToCartAPITest" />
+			<class name="com.mryoda.diagnostics.api.tests.GetCartByIdAPITest" />
+			<!-- Address API - Now enabled with correct endpoint -->
+			<class name="com.mryoda.diagnostics.api.tests.AddressAPITest" />
+			<!-- Get Address By User ID API - Retrieves and stores address_id (guid) -->
+			<class name="com.mryoda.diagnostics.api.tests.GetAddressByUserIdAPITest" />
+			<!-- Get Centers By Add API - Validates location with address_id and lab_id -->
+			<class name="com.mryoda.diagnostics.api.tests.GetCentersByAddAPITest" />
+			<!-- Slot Selection and Cart Update API - Finds available slots and updates cart with slot_guid -->
+			<class name="com.mryoda.diagnostics.api.tests.SlotAndCartUpdateAPITest" />
+			<!-- Create Order API - Creates final order and validates against all previous API responses -->
+			<class name="com.mryoda.diagnostics.api.tests.CreateOrderAPITest" />
+			<!-- Payment Validation API - Validates payment business rules and Razorpay configuration -->
+			<class name="com.mryoda.diagnostics.api.tests.PaymentValidationAPITest" />
+			<!-- Real Razorpay Payment Verification - Tests with actual payment data -->
+			<class name="com.mryoda.diagnostics.api.tests.RealRazorpayPaymentTest" />
 
 		</classes>
 	</test>

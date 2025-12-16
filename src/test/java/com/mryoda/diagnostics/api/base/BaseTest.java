@@ -34,10 +34,4 @@ public class BaseTest {
     public void tearDown() {
         LoggerUtil.info("Environment teardown completed");
     }
-
-    
-    /**
-     * Helper method for tests that need authentication
-     * Call this in your test's @BeforeMethod or in the test itself
-     */
-   }
+}

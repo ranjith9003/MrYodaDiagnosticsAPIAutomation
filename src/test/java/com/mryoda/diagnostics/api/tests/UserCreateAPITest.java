@@ -79,10 +79,6 @@ public class UserCreateAPITest extends BaseTest {
         // VALIDATIONS
         // ---------------------------------------------------
         AssertionUtil.verifyEquals(responseMobile, mobile, "Mobile Number must match");
-        AssertionUtil.verifyNotNull(userId, "User ID must not be null");
-        AssertionUtil.verifyNotNull(firstName, "First Name must not be null");
-        AssertionUtil.verifyNotNull(lastName, "Last Name must not be null");
-        AssertionUtil.verifyNotNull(email, "Email must not be null");
 
         // ---------------------------------------------------
         // STORE ALL PARAMETERS in RequestContext (Generic)

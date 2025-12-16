@@ -1,0 +1,698 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< MrYodDiagnosticsAPI:MrYodDiagnosticsAPI >---------------
+[INFO] Building MrYodDiagnosticsAPI 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ MrYodDiagnosticsAPI ---
+[INFO] Deleting C:\Users\RANJITH\eclipse-workspace\MrYodaDiagnosticsAPI\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ MrYodDiagnosticsAPI ---
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ MrYodDiagnosticsAPI ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 25 source files with javac [debug target 11] to target\classes
+[WARNING] system modules path not set in conjunction with -source 11
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ MrYodDiagnosticsAPI ---
+[INFO] Copying 2 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ MrYodDiagnosticsAPI ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 8 source files with javac [debug target 11] to target\test-classes
+[WARNING] system modules path not set in conjunction with -source 11
+[INFO] 
+[INFO] --- surefire:3.1.2:test (default-test) @ MrYodDiagnosticsAPI ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running TestSuite
+2025-12-11 12:40:16 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:16 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST SUITE STARTED: MrYoda Diagnostics API Test Suite
+2025-12-11 12:40:16 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:16 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Started ======
+2025-12-11 12:40:17 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Base URL: https://staging-api-diagnostics.yodaprojects.com
+2025-12-11 12:40:17 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Completed ======
+2025-12-11 12:40:17 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:17 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testLoginWithOTP
+2025-12-11 12:40:17 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+????????????????????????????????????????????????????????????
+?            MEMBER LOGIN TEST                             ?
+????????????????????????????????????????????????????????????
+
+==================================================
+========== TOKEN GENERATION START (MEMBER) ==========
+==================================================
+? DEBUG ? User Type     : MEMBER
+? DEBUG ? Mobile        : 9003730394
+? DEBUG ? Country Code  : +91
+? DEBUG ? Static OTP    : 123456
+
+? STEP 1: REQUESTING OTP…
+?? OTP REQUEST BODY:
+{
+  "country_code": "+91",
+  "mobile": "9003730394"
+}
+? OTP REQUEST SUCCESS ? Status: 200
+
+? STEP 2: VERIFYING OTP & FETCHING TOKEN…
+?? OTP VERIFY BODY:
+{
+  "country_code": "+91",
+  "mobile": "9003730394",
+  "otp": "123456"
+}
+? OTP VERIFIED ? Status: 200
+
+? ===== DEBUG: EXTRACTED USER DETAILS =====
+? Access Token   : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6IjI1OTJlZWJlLWNjM2QtNDcxYS05OWY5LTU2NzU3ZmY3NmVhMyIsIm1vYmlsZSI6IjkwMDM3MzAzOTQiLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6Ikt1bWFyIiwiZW1haWwiOiIiLCJyb2xlIjoidXNlcl9vbmx5IiwiaWF0IjoxNzY1NDM3MDI2LCJleHAiOjE3ODEyMjMyNjZ9.2SZXeQbCLV3ZLMZ6NHta5KBLe8xneQsbZ4jQcBX7_gg
+? First Name     : Ranjith
+? Last Name      : Kumar
+? Mobile         : 9003730394
+? User ID (GUID) : 2592eebe-cc3d-471a-99f9-56757ff76ea3
+? Email          : 
+?  Gender         : Male
+? DOB            : 1996-02-10
+? Country Code   : +91
+=============================================
+
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Token must not be null is valid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6IjI1OTJlZWJlLWNjM2QtNDcxYS05OWY5LTU2NzU3ZmY3NmVhMyIsIm1vYmlsZSI6IjkwMDM3MzAzOTQiLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6Ikt1bWFyIiwiZW1haWwiOiIiLCJyb2xlIjoidXNlcl9vbmx5IiwiaWF0IjoxNzY1NDM3MDI2LCJleHAiOjE3ODEyMjMyNjZ9.2SZXeQbCLV3ZLMZ6NHta5KBLe8xneQsbZ4jQcBX7_gg
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Mobile must match login mobile is correct: 9003730394
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? First Name is valid: Ranjith
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Last Name is valid: Kumar
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? User ID is valid: 2592eebe-cc3d-471a-99f9-56757ff76ea3
+? STORED INTO RequestContext (MEMBER):
+? Member Token
+? Member First Name: Ranjith
+? Member Last Name: Kumar
+? Member User ID: 2592eebe-cc3d-471a-99f9-56757ff76ea3
+
+==================================================
+========== TOKEN GENERATION END (MEMBER) ===========
+==================================================
+
+? MEMBER LOGIN SUCCESS
+   Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6IjI1OTJlZWJlLWNjM2QtNDcxYS05OWY5LTU2NzU3ZmY3NmVhMyIsIm1vYmlsZSI6IjkwMDM3MzAzOTQiLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6Ikt1bWFyIiwiZW1haWwiOiIiLCJyb2xlIjoidXNlcl9vbmx5IiwiaWF0IjoxNzY1NDM3MDI2LCJleHAiOjE3ODEyMjMyNjZ9.2SZXeQbCLV3ZLMZ6NHta5KBLe8xneQsbZ4jQcBX7_gg
+   Stored in: RequestContext.getMemberToken()
+   First Name: Ranjith
+   Last Name: Kumar
+   User ID: 2592eebe-cc3d-471a-99f9-56757ff76ea3
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testLoginWithOTP
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testLoginWithOTP
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testLoginWithOTP_ExistingMember
+2025-12-11 12:40:27 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+????????????????????????????????????????????????????????????
+?         EXISTING MEMBER LOGIN TEST                       ?
+????????????????????????????????????????????????????????????
+
+==================================================
+========== TOKEN GENERATION START (EXISTING_MEMBER) ==========
+==================================================
+? DEBUG ? User Type     : EXISTING_MEMBER
+? DEBUG ? Mobile        : 8220220227
+? DEBUG ? Country Code  : +91
+? DEBUG ? Static OTP    : 123456
+
+? STEP 1: REQUESTING OTP…
+?? OTP REQUEST BODY:
+{
+  "country_code": "+91",
+  "mobile": "8220220227"
+}
+? OTP REQUEST SUCCESS ? Status: 200
+
+? STEP 2: VERIFYING OTP & FETCHING TOKEN…
+?? OTP VERIFY BODY:
+{
+  "country_code": "+91",
+  "mobile": "8220220227",
+  "otp": "123456"
+}
+? OTP VERIFIED ? Status: 200
+
+? ===== DEBUG: EXTRACTED USER DETAILS =====
+? Access Token   : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6Ijc0NTE4MDY1LWNjNGItNGQ5ZS1hMjRiLTMyZTMzMWUxOTYzZCIsIm1vYmlsZSI6IjgyMjAyMjAyMjciLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6IkEiLCJlbWFpbCI6InJhbmppdGguQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyX29ubHkiLCJpYXQiOjE3NjU0MzcwMzAsImV4cCI6MTc4MTIyMzI3MH0.KJ5LC5H81BEv_6caDnsXww0VUp8xJiz8AH_IQ3Evfos
+? First Name     : Ranjith
+? Last Name      : A
+? Mobile         : 8220220227
+? User ID (GUID) : 74518065-cc4b-4d9e-a24b-32e331e1963d
+? Email          : ranjith.@gmail.com
+?  Gender         : Male
+? DOB            : 1996-10-10
+? Country Code   : +91
+=============================================
+
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Token must not be null is valid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6Ijc0NTE4MDY1LWNjNGItNGQ5ZS1hMjRiLTMyZTMzMWUxOTYzZCIsIm1vYmlsZSI6IjgyMjAyMjAyMjciLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6IkEiLCJlbWFpbCI6InJhbmppdGguQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyX29ubHkiLCJpYXQiOjE3NjU0MzcwMzAsImV4cCI6MTc4MTIyMzI3MH0.KJ5LC5H81BEv_6caDnsXww0VUp8xJiz8AH_IQ3Evfos
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Mobile must match login mobile is correct: 8220220227
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? First Name is valid: Ranjith
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Last Name is valid: A
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? User ID is valid: 74518065-cc4b-4d9e-a24b-32e331e1963d
+? STORED INTO RequestContext (EXISTING_MEMBER):
+? Existing Member Token
+? Existing Member First Name: Ranjith
+? Existing Member Last Name: A
+? Existing Member User ID: 74518065-cc4b-4d9e-a24b-32e331e1963d
+
+==================================================
+========== TOKEN GENERATION END (EXISTING_MEMBER) ===========
+==================================================
+
+? EXISTING MEMBER LOGIN SUCCESS
+   Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6Ijc0NTE4MDY1LWNjNGItNGQ5ZS1hMjRiLTMyZTMzMWUxOTYzZCIsIm1vYmlsZSI6IjgyMjAyMjAyMjciLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6IkEiLCJlbWFpbCI6InJhbmppdGguQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyX29ubHkiLCJpYXQiOjE3NjU0MzcwMzAsImV4cCI6MTc4MTIyMzI3MH0.KJ5LC5H81BEv_6caDnsXww0VUp8xJiz8AH_IQ3Evfos
+   Stored in: RequestContext.getExistingMemberToken()
+   First Name: Ranjith
+   Last Name: A
+   User ID: 74518065-cc4b-4d9e-a24b-32e331e1963d
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testLoginWithOTP_ExistingMember
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testLoginWithOTP_ExistingMember
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Started ======
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Base URL: https://staging-api-diagnostics.yodaprojects.com
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Completed ======
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testUserRegistration_CreateNewUser
+2025-12-11 12:40:30 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+????????????????????????????????????????????????????????????
+?           USER REGISTRATION TEST                         ?
+????????????????????????????????????????????????????????????
+
+? Generated Mobile: 9026257598
+
+?? USER REGISTRATION REQUEST:
+{
+  "country_code": "+91",
+  "gender": "male",
+  "dob": "1988-02-15",
+  "mobile": "9026257598",
+  "profile_pic": "https://cdn.test.com/img/8af3af.png",
+  "last_name": "Smith",
+  "middle_name": "I",
+  "first_name": "Alex",
+  "alt_mobile": "8077281215",
+  "email": "auto_4c921ec4@test.com"
+}
+
+? USER REGISTRATION RESPONSE RECEIVED
+
+? ===== EXTRACTED USER REGISTRATION DATA =====
+? User ID (GUID)  : bc841314-fa01-464c-8199-ff5186534cc1
+? First Name      : Alex
+? Last Name       : Smith
+? Email           : auto_4c921ec4@test.com
+?  Gender          : male
+? DOB             : 1988-02-15
+? Mobile          : 9026257598
+? Country Code    : +91
+? Status          : null
+? Created At      : null
+? Updated At      : null
+==============================================
+
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Mobile Number must match is correct: 9026257598
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? User ID must not be null is valid: bc841314-fa01-464c-8199-ff5186534cc1
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? First Name must not be null is valid: Alex
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Last Name must not be null is valid: Smith
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Email must not be null is valid: auto_4c921ec4@test.com
+? STORED IN RequestContext (GENERIC):
+? User ID: bc841314-fa01-464c-8199-ff5186534cc1
+? First Name: Alex
+? Last Name: Smith
+? Mobile: 9026257598 (already stored)
+
+????????????????????????????????????????????????????????????
+?        USER REGISTRATION COMPLETED ?                     ?
+????????????????????????????????????????????????????????????
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testUserRegistration_CreateNewUser
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testUserRegistration_CreateNewUser
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Environment teardown completed
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testLoginWithOTP_NewlyRegisteredUser
+2025-12-11 12:40:31 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+????????????????????????????????????????????????????????????
+?            NEW USER LOGIN TEST                           ?
+????????????????????????????????????????????????????????????
+
+==================================================
+========== TOKEN GENERATION START (NEW_USER) ==========
+==================================================
+? DEBUG ? User Type     : NEW_USER
+? DEBUG ? Mobile        : 9026257598
+? DEBUG ? Country Code  : +91
+? DEBUG ? Static OTP    : 123456
+
+? STEP 1: REQUESTING OTP…
+?? OTP REQUEST BODY:
+{
+  "country_code": "+91",
+  "mobile": "9026257598"
+}
+? OTP REQUEST SUCCESS ? Status: 200
+
+? STEP 2: VERIFYING OTP & FETCHING TOKEN…
+?? OTP VERIFY BODY:
+{
+  "country_code": "+91",
+  "mobile": "9026257598",
+  "otp": "123456"
+}
+? OTP VERIFIED ? Status: 200
+
+? ===== DEBUG: EXTRACTED USER DETAILS =====
+? Access Token   : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6ImJjODQxMzE0LWZhMDEtNDY0Yy04MTk5LWZmNTE4NjUzNGNjMSIsIm1vYmlsZSI6IjkwMjYyNTc1OTgiLCJmaXJzdF9uYW1lIjoiQWxleCIsImxhc3RfbmFtZSI6IlNtaXRoIiwiZW1haWwiOiJhdXRvXzRjOTIxZWM0QHRlc3QuY29tIiwicm9sZSI6InVzZXJfb25seSIsImlhdCI6MTc2NTQzNzAzNCwiZXhwIjoxNzgxMjIzMjc0fQ.WIbz82fkccfjEezZnAiB-Mp3cxFnrygO2Gqmnwxhgps
+? First Name     : Alex
+? Last Name      : Smith
+? Mobile         : 9026257598
+? User ID (GUID) : bc841314-fa01-464c-8199-ff5186534cc1
+? Email          : auto_4c921ec4@test.com
+?  Gender         : male
+? DOB            : 1988-02-15
+? Country Code   : +91
+=============================================
+
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Token must not be null is valid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6ImJjODQxMzE0LWZhMDEtNDY0Yy04MTk5LWZmNTE4NjUzNGNjMSIsIm1vYmlsZSI6IjkwMjYyNTc1OTgiLCJmaXJzdF9uYW1lIjoiQWxleCIsImxhc3RfbmFtZSI6IlNtaXRoIiwiZW1haWwiOiJhdXRvXzRjOTIxZWM0QHRlc3QuY29tIiwicm9sZSI6InVzZXJfb25seSIsImlhdCI6MTc2NTQzNzAzNCwiZXhwIjoxNzgxMjIzMjc0fQ.WIbz82fkccfjEezZnAiB-Mp3cxFnrygO2Gqmnwxhgps
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Mobile must match login mobile is correct: 9026257598
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? First Name is valid: Alex
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Last Name is valid: Smith
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? User ID is valid: bc841314-fa01-464c-8199-ff5186534cc1
+? STORED INTO RequestContext (NEW_USER):
+? New User Token
+? New User First Name: Alex
+? New User Last Name: Smith
+? New User User ID: bc841314-fa01-464c-8199-ff5186534cc1
+
+==================================================
+========== TOKEN GENERATION END (NEW_USER) ===========
+==================================================
+
+? NEW USER LOGIN SUCCESS
+   Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6ImJjODQxMzE0LWZhMDEtNDY0Yy04MTk5LWZmNTE4NjUzNGNjMSIsIm1vYmlsZSI6IjkwMjYyNTc1OTgiLCJmaXJzdF9uYW1lIjoiQWxleCIsImxhc3RfbmFtZSI6IlNtaXRoIiwiZW1haWwiOiJhdXRvXzRjOTIxZWM0QHRlc3QuY29tIiwicm9sZSI6InVzZXJfb25seSIsImlhdCI6MTc2NTQzNzAzNCwiZXhwIjoxNzgxMjIzMjc0fQ.WIbz82fkccfjEezZnAiB-Mp3cxFnrygO2Gqmnwxhgps
+   Stored in: RequestContext.getNewUserToken()
+   First Name: Alex
+   Last Name: Smith
+   User ID: bc841314-fa01-464c-8199-ff5186534cc1
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testLoginWithOTP_NewlyRegisteredUser
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testLoginWithOTP_NewlyRegisteredUser
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Environment teardown completed
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Started ======
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Base URL: https://staging-api-diagnostics.yodaprojects.com
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Completed ======
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testGetLocations_ForExistingMember
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+===== LOCATION API — EXISTING MEMBER =====
+2025-12-11 12:40:34 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Token must NOT be null! is valid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6Ijc0NTE4MDY1LWNjNGItNGQ5ZS1hMjRiLTMyZTMzMWUxOTYzZCIsIm1vYmlsZSI6IjgyMjAyMjAyMjciLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6IkEiLCJlbWFpbCI6InJhbmppdGguQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyX29ubHkiLCJpYXQiOjE3NjU0MzcwMzAsImV4cCI6MTc4MTIyMzI3MH0.KJ5LC5H81BEv_6caDnsXww0VUp8xJiz8AH_IQ3Evfos
+2025-12-11 12:40:35 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? API success flag - Condition is TRUE
+2025-12-11 12:40:35 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location count > 0 - Condition is TRUE
+
+? Total Locations Found: 6
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 0 is valid: 64870066842708a0d5ae6c77
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 0 is valid: Ameerpet (HQ)
+? Stored: Ameerpet (HQ) ? 64870066842708a0d5ae6c77
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 1 is valid: 64870066842708a0d5ae6c74
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 1 is valid: Guntur
+? Stored: Guntur ? 64870066842708a0d5ae6c74
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 2 is valid: 68ecce703d573db19b650c76
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 2 is valid: Khammam
+? Stored: Khammam ? 68ecce703d573db19b650c76
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 3 is valid: 676a5fa720093d2807af03a5
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 3 is valid: Madhapur
+? Stored: Madhapur ? 676a5fa720093d2807af03a5
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 4 is valid: 64870066842708a0d5ae6c75
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 4 is valid: Tirupati
+? Stored: Tirupati ? 64870066842708a0d5ae6c75
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 5 is valid: 67346a7655a51ec8ef586bb1
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 5 is valid: Visakhapatnam
+? Stored: Visakhapatnam ? 67346a7655a51ec8ef586bb1
+
+? Locations stored for reuse in next APIs
+
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testGetLocations_ForExistingMember
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testGetLocations_ForExistingMember
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testGetLocations_ForMember
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+===== LOCATION API — MEMBER =====
+2025-12-11 12:40:36 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Token must NOT be null! is valid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6IjI1OTJlZWJlLWNjM2QtNDcxYS05OWY5LTU2NzU3ZmY3NmVhMyIsIm1vYmlsZSI6IjkwMDM3MzAzOTQiLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6Ikt1bWFyIiwiZW1haWwiOiIiLCJyb2xlIjoidXNlcl9vbmx5IiwiaWF0IjoxNzY1NDM3MDI2LCJleHAiOjE3ODEyMjMyNjZ9.2SZXeQbCLV3ZLMZ6NHta5KBLe8xneQsbZ4jQcBX7_gg
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? API success flag - Condition is TRUE
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location count > 0 - Condition is TRUE
+
+? Total Locations Found: 6
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 0 is valid: 64870066842708a0d5ae6c77
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 0 is valid: Ameerpet (HQ)
+? Stored: Ameerpet (HQ) ? 64870066842708a0d5ae6c77
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 1 is valid: 64870066842708a0d5ae6c74
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 1 is valid: Guntur
+? Stored: Guntur ? 64870066842708a0d5ae6c74
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 2 is valid: 68ecce703d573db19b650c76
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 2 is valid: Khammam
+? Stored: Khammam ? 68ecce703d573db19b650c76
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 3 is valid: 676a5fa720093d2807af03a5
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 3 is valid: Madhapur
+? Stored: Madhapur ? 676a5fa720093d2807af03a5
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 4 is valid: 64870066842708a0d5ae6c75
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 4 is valid: Tirupati
+? Stored: Tirupati ? 64870066842708a0d5ae6c75
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 5 is valid: 67346a7655a51ec8ef586bb1
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 5 is valid: Visakhapatnam
+? Stored: Visakhapatnam ? 67346a7655a51ec8ef586bb1
+
+? Locations stored for reuse in next APIs
+
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testGetLocations_ForMember
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testGetLocations_ForMember
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testGetLocations_ForNewUser
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+===== LOCATION API — NEW USER =====
+2025-12-11 12:40:37 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Token must NOT be null! is valid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6ImJjODQxMzE0LWZhMDEtNDY0Yy04MTk5LWZmNTE4NjUzNGNjMSIsIm1vYmlsZSI6IjkwMjYyNTc1OTgiLCJmaXJzdF9uYW1lIjoiQWxleCIsImxhc3RfbmFtZSI6IlNtaXRoIiwiZW1haWwiOiJhdXRvXzRjOTIxZWM0QHRlc3QuY29tIiwicm9sZSI6InVzZXJfb25seSIsImlhdCI6MTc2NTQzNzAzNCwiZXhwIjoxNzgxMjIzMjc0fQ.WIbz82fkccfjEezZnAiB-Mp3cxFnrygO2Gqmnwxhgps
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? API success flag - Condition is TRUE
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location count > 0 - Condition is TRUE
+
+? Total Locations Found: 6
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 0 is valid: 64870066842708a0d5ae6c77
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 0 is valid: Ameerpet (HQ)
+? Stored: Ameerpet (HQ) ? 64870066842708a0d5ae6c77
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 1 is valid: 64870066842708a0d5ae6c74
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 1 is valid: Guntur
+? Stored: Guntur ? 64870066842708a0d5ae6c74
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 2 is valid: 68ecce703d573db19b650c76
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 2 is valid: Khammam
+? Stored: Khammam ? 68ecce703d573db19b650c76
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 3 is valid: 676a5fa720093d2807af03a5
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 3 is valid: Madhapur
+? Stored: Madhapur ? 676a5fa720093d2807af03a5
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 4 is valid: 64870066842708a0d5ae6c75
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 4 is valid: Tirupati
+? Stored: Tirupati ? 64870066842708a0d5ae6c75
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location ID 5 is valid: 67346a7655a51ec8ef586bb1
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Location Title 5 is valid: Visakhapatnam
+? Stored: Visakhapatnam ? 67346a7655a51ec8ef586bb1
+
+? Locations stored for reuse in next APIs
+
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testGetLocations_ForNewUser
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testGetLocations_ForNewUser
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Environment teardown completed
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Started ======
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Base URL: https://staging-api-diagnostics.yodaprojects.com
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Completed ======
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testGetAllBrands_ForExistingMember
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+????????????????????????????????????????????????????????????
+?       GET ALL BRANDS API — EXISTING MEMBER               ?
+????????????????????????????????????????????????????????????
+2025-12-11 12:40:38 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Token must NOT be null! is valid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6Ijc0NTE4MDY1LWNjNGItNGQ5ZS1hMjRiLTMyZTMzMWUxOTYzZCIsIm1vYmlsZSI6IjgyMjAyMjAyMjciLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6IkEiLCJlbWFpbCI6InJhbmppdGguQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyX29ubHkiLCJpYXQiOjE3NjU0MzcwMzAsImV4cCI6MTc4MTIyMzI3MH0.KJ5LC5H81BEv_6caDnsXww0VUp8xJiz8AH_IQ3Evfos
+? Requesting page: 1
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Response must not be null is valid: io.restassured.internal.RestAssuredResponseImpl@2248d140
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? API success flag - Condition is TRUE
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand count > 0 - Condition is TRUE
+
+?? Total Brands Found: 4
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 0 is valid: Diagnostics
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 0 is valid: Diagnostics
+? Stored: Diagnostics ? brand_id: Diagnostics
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 1 is valid: DNA Decoder
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 1 is valid: DNA Decoder
+? Stored: DNA Decoder ? brand_id: DNA Decoder
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 2 is valid: MedMatch
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 2 is valid: MedMatch
+? Stored: MedMatch ? brand_id: MedMatch
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 3 is valid: Fetal Medicine
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 3 is valid: Fetal Medicine
+? Stored: Fetal Medicine ? brand_id: Fetal Medicine
+
+? Brands stored for reuse in next APIs
+
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testGetAllBrands_ForExistingMember
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testGetAllBrands_ForExistingMember
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testGetAllBrands_ForMember
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+????????????????????????????????????????????????????????????
+?          GET ALL BRANDS API — MEMBER                     ?
+????????????????????????????????????????????????????????????
+2025-12-11 12:40:40 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Token must NOT be null! is valid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6IjI1OTJlZWJlLWNjM2QtNDcxYS05OWY5LTU2NzU3ZmY3NmVhMyIsIm1vYmlsZSI6IjkwMDM3MzAzOTQiLCJmaXJzdF9uYW1lIjoiUmFuaml0aCIsImxhc3RfbmFtZSI6Ikt1bWFyIiwiZW1haWwiOiIiLCJyb2xlIjoidXNlcl9vbmx5IiwiaWF0IjoxNzY1NDM3MDI2LCJleHAiOjE3ODEyMjMyNjZ9.2SZXeQbCLV3ZLMZ6NHta5KBLe8xneQsbZ4jQcBX7_gg
+? Requesting page: 1
+2025-12-11 12:40:41 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Response must not be null is valid: io.restassured.internal.RestAssuredResponseImpl@3b56947a
+2025-12-11 12:40:41 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? API success flag - Condition is TRUE
+2025-12-11 12:40:41 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand count > 0 - Condition is TRUE
+
+?? Total Brands Found: 4
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 0 is valid: Diagnostics
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 0 is valid: Diagnostics
+? Stored: Diagnostics ? brand_id: Diagnostics
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 1 is valid: DNA Decoder
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 1 is valid: DNA Decoder
+? Stored: DNA Decoder ? brand_id: DNA Decoder
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 2 is valid: MedMatch
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 2 is valid: MedMatch
+? Stored: MedMatch ? brand_id: MedMatch
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 3 is valid: Fetal Medicine
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 3 is valid: Fetal Medicine
+? Stored: Fetal Medicine ? brand_id: Fetal Medicine
+
+? Brands stored for reuse in next APIs
+
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testGetAllBrands_ForMember
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testGetAllBrands_ForMember
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testGetAllBrands_ForNewUser
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+????????????????????????????????????????????????????????????
+?         GET ALL BRANDS API — NEW USER                    ?
+????????????????????????????????????????????????????????????
+2025-12-11 12:40:42 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Token must NOT be null! is valid: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyR3VpZCI6ImJjODQxMzE0LWZhMDEtNDY0Yy04MTk5LWZmNTE4NjUzNGNjMSIsIm1vYmlsZSI6IjkwMjYyNTc1OTgiLCJmaXJzdF9uYW1lIjoiQWxleCIsImxhc3RfbmFtZSI6IlNtaXRoIiwiZW1haWwiOiJhdXRvXzRjOTIxZWM0QHRlc3QuY29tIiwicm9sZSI6InVzZXJfb25seSIsImlhdCI6MTc2NTQzNzAzNCwiZXhwIjoxNzgxMjIzMjc0fQ.WIbz82fkccfjEezZnAiB-Mp3cxFnrygO2Gqmnwxhgps
+? Requesting page: 1
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Response must not be null is valid: io.restassured.internal.RestAssuredResponseImpl@7fb82f73
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? API success flag - Condition is TRUE
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand count > 0 - Condition is TRUE
+
+?? Total Brands Found: 4
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 0 is valid: Diagnostics
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 0 is valid: Diagnostics
+? Stored: Diagnostics ? brand_id: Diagnostics
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 1 is valid: DNA Decoder
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 1 is valid: DNA Decoder
+? Stored: DNA Decoder ? brand_id: DNA Decoder
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 2 is valid: MedMatch
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 2 is valid: MedMatch
+? Stored: MedMatch ? brand_id: MedMatch
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand Name 3 is valid: Fetal Medicine
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Brand ID 3 is valid: Fetal Medicine
+? Stored: Fetal Medicine ? brand_id: Fetal Medicine
+
+? Brands stored for reuse in next APIs
+
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testGetAllBrands_ForNewUser
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testGetAllBrands_ForNewUser
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Environment teardown completed
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Started ======
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Base URL: https://staging-api-diagnostics.yodaprojects.com
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ====== Test Setup Completed ======
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Starting Test: testGlobalSearchAndStore
+2025-12-11 12:40:44 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+
+????????????????????????????????????????????????????????????
+?        GLOBAL SEARCH API TEST - COMPLETE FLOW           ?
+????????????????????????????????????????????????????????????
+? DEBUG ? STORED LOCATIONS: {Tirupati=64870066842708a0d5ae6c75, Visakhapatnam=67346a7655a51ec8ef586bb1, Khammam=68ecce703d573db19b650c76, Madhapur=676a5fa720093d2807af03a5, Ameerpet (HQ)=64870066842708a0d5ae6c77, Guntur=64870066842708a0d5ae6c74}
+
+? Tests to Search: Blood Coagulation
+? SEARCH KEYWORD SELECTED FROM FULL NAME: blood
+? SEARCH LOCATION: Madhapur ? 676a5fa720093d2807af03a5
+? TOTAL TESTS RECEIVED FROM API: 50
+
+? MATCHED & STORED TEST: Blood Coagulation
+   Test ID       : GEN110
+   Product ID    : 675921110856fe1e1e992ec9
+   Price         : ?25000
+   Original Price: ?25000
+   Type          : diagnostics
+   Status        : ACTIVE
+   Home Collection: NOT AVAILABLE
+
+? All requested tests extracted and stored successfully!
+
+????????????????????????????????????????????????????????????
+?              VALIDATION & FIELD RETRIEVAL                ?
+????????????????????????????????????????????????????????????
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Stored test 'Blood Coagulation' must not be null is valid: {organ=[], frequently_asked_questions=[], original_price=25000, components=[], usage=, description=, frequently_booked=false, discount_percentage=0, search_keywords=[], discount_rate=22500, rewards_percentage=1125, cpt_comment=, b2b_price=null, createdAt=2024-12-11T05:20:17.850Z, price=25000, specimen=, business_type=[B2B, B2C], doctorsSpeciality=[], department=[{_id=675697b0262d1460f8d55d36, name=HEMATOLOGICAL GENETICS, createdAt=2024-12-09T07:09:35.963Z, updatedAt=2024-12-09T07:09:35.963Z, active=true}], popular=false, slug=blood-coagulation, stability=[], test_id=GEN110, updatedAt=2025-10-21T13:41:54.304Z, method=[], diseases=[], index=12, raw={_id=675921110856fe1e1e992ec9, test_id=GEN110, test_name=Blood Coagulation, components=[], turn_around_time=null, specimen=, slug=blood-coagulation, stability=[], comment=, usage=, locations=[64870066842708a0d5ae6c77, 64870066842708a0d5ae6c74, 676a5fa720093d2807af03a5, 64870066842708a0d5ae6c75, 67346a7655a51ec8ef586bb1, 6781186b658e894bfeb119e9, 67b4897b1c7d425d13943fb7, 67bc117b913541b6a689874d, 68258451d3452617c0860664, 6842790b3507e932fd14b0cc, 685a6d2b90c0456408d2ea5b, 68ecce703d573db19b650c76, 68f782b1a33e1fb109883fa8, 68f783e153d56d971fe0bc63, 68f784658d8708d8bab83dc9, 68f78da1a5274a337d2d10f8], department=[{_id=675697b0262d1460f8d55d36, name=HEMATOLOGICAL GENETICS, createdAt=2024-12-09T07:09:35.963Z, updatedAt=2024-12-09T07:09:35.963Z, active=true}], doctor_speciality=[], method=[], organ=[], doctorsSpeciality=[], diseases=[], price=25000, original_price=25000, cpt_comment=, cpt_price=0, actual_cprt_price=0, genders=[MALE, FEMALE], b2b_price=null, home_collection=NOT AVAILABLE, popular=false, speciality_tests=false, frequently_booked=false, pre_test_information=, business_type=[B2B, B2C], status=ACTIVE, createdAt=2024-12-11T05:20:17.850Z, updatedAt=2025-10-21T13:41:54.304Z, description=, courier_charges=0, frequently_asked_questions=[], other_names=[], result_interpretation=, index=12, search_keywords=[], Type=diagnostics, discount_percentage=0, discount_rate=22500, rewards_percentage=1125, membership_discount=10}, pre_test_information=, genders=[MALE, FEMALE], other_names=[], turn_around_time=null, Type=diagnostics, courier_charges=0, result_interpretation=, doctor_speciality=[], membership_discount=10, cpt_price=0, actual_cprt_price=0, comment=, locations=[64870066842708a0d5ae6c77, 64870066842708a0d5ae6c74, 676a5fa720093d2807af03a5, 64870066842708a0d5ae6c75, 67346a7655a51ec8ef586bb1, 6781186b658e894bfeb119e9, 67b4897b1c7d425d13943fb7, 67bc117b913541b6a689874d, 68258451d3452617c0860664, 6842790b3507e932fd14b0cc, 685a6d2b90c0456408d2ea5b, 68ecce703d573db19b650c76, 68f782b1a33e1fb109883fa8, 68f783e153d56d971fe0bc63, 68f784658d8708d8bab83dc9, 68f78da1a5274a337d2d10f8], _id=675921110856fe1e1e992ec9, speciality_tests=false, test_name=Blood Coagulation, status=ACTIVE, home_collection=NOT AVAILABLE}
+
+? Retrieving ALL fields for: Blood Coagulation
+
+   ??? BASIC FIELDS ???
+   ? Test ID         : GEN110
+   ? Product ID      : 675921110856fe1e1e992ec9
+   ? Slug            : blood-coagulation
+   ? Status          : ACTIVE
+   ? Type            : diagnostics
+
+   ??? PRICING FIELDS ???
+   ? Price           : ?25000.0
+   ? Original Price  : ?25000.0
+   ? B2B Price       : N/A
+   ? Discount %      : 0.0%
+   ? Discount Rate   : ?22500
+   ? Rewards %       : 1125%
+   ? Membership Disc.: 10.0%
+   ? Courier Charges : ?0.0
+   ? CPT Price       : ?0.0
+   ? Actual CPRT     : ?0.0
+
+   ??? DETAIL FIELDS ???
+   ? Home Collection : NOT AVAILABLE
+   ? Specimen        : N/A
+   ? Turn Around Time: null
+   ? Pre-Test Info   : N/A
+
+   ??? BOOLEAN FLAGS ???
+   ? Popular         : false
+   ? Speciality Test : false
+   ? Freq. Booked    : false
+
+   ??? ARRAY/LIST FIELDS ???
+   ? Genders         : [MALE, FEMALE]
+   ? Business Type   : [B2B, B2C]
+   ? Locations Count : 16
+   ? Components Count: 0
+   ? Department Count: 1
+   ? Dept Name       : HEMATOLOGICAL GENETICS
+
+   ??? TIMESTAMPS ???
+   ? Created At      : 2024-12-11T05:20:17.850Z
+   ? Updated At      : 2025-10-21T13:41:54.304Z
+   ? Index           : 12
+
+   ??? VALIDATING EXTRACTED DATA ???
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Test ID should not be null is valid: GEN110
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Product ID should not be null is valid: 675921110856fe1e1e992ec9
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Price should be greater than 0 - Condition is TRUE
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Test should be ACTIVE is correct: ACTIVE
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Type should not be null is valid: diagnostics
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Genders list should not be empty - Condition is TRUE
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Business type list should not be empty - Condition is TRUE
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Locations list should not be empty - Condition is TRUE
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Created timestamp should not be null is valid: 2024-12-11T05:20:17.850Z
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ? Updated timestamp should not be null is valid: 2025-10-21T13:41:54.304Z
+   ? All validations passed for: Blood Coagulation
+
+????????????????????????????????????????????????????????????
+?           COMPLETE TEST DETAILS (ALL FIELDS)             ?
+????????????????????????????????????????????????????????????
+
+??????????????????????????????????????????????????????????
+?  TEST DETAILS: Blood Coagulation
+??????????????????????????????????????????????????????????
+? Product ID        : 675921110856fe1e1e992ec9
+? Test ID           : GEN110
+? Test Name         : Blood Coagulation
+? Slug              : blood-coagulation
+? Price             : ?25000
+? Original Price    : ?25000
+? B2B Price         : N/A
+??  Discount %        : 0%
+? Discount Rate     : ?22500
+? Rewards %         : 1125%
+? Membership Disc.  : 10%
+? Courier Charges   : ?0
+? Home Collection   : NOT AVAILABLE
+? Specimen          : 
+? Turn Around Time  : null
+? Status            : ACTIVE
+??  Type              : diagnostics
+? Popular           : false
+? Speciality Tests  : false
+? Frequently Booked : false
+? Genders           : [MALE, FEMALE]
+? Business Type     : [B2B, B2C]
+? Locations Count   : 16
+? Components Count  : 0
+? Department        : [{_id=675697b0262d1460f8d55d36, name=HEMATOLOGICAL GENETICS, createdAt=2024-12-09T07:09:35.963Z, updatedAt=2024-12-09T07:09:35.963Z, active=true}]
+???? Doctor Speciality : []
+???? Doctors Speciality: []
+? Method            : []
+? Organ             : []
+? Diseases          : []
+? Search Keywords   : []
+? Other Names       : []
+? FAQs Count        : 0
+? Description       : N/A
+??  Pre-Test Info     : N/A
+? Comment           : N/A
+? Usage             : N/A
+? Result Interpret. : N/A
+? CPT Comment       : N/A
+? CPT Price         : ?0
+? Actual CPRT Price : ?0
+? Index             : 12
+? Created At        : 2024-12-11T05:20:17.850Z
+? Updated At        : 2025-10-21T13:41:54.304Z
+????????????????????????????????????????????????????????
+
+
+????????????????????????????????????????????????????????????
+?                  TEST COMPLETED ?                        ?
+????????????????????????????????????????????????????????????
+? GLOBAL SEARCH TEST COMPLETED SUCCESSFULLY!
+? ALL fields from Global Search API response extracted and stored
+? Comprehensive validation of 40+ parameters completed
+? Helper methods for all fields working correctly
+? Data ready for use in subsequent tests
+
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST PASSED: testGlobalSearchAndStore
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Completed Test: testGlobalSearchAndStore
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - Environment teardown completed
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - TEST SUITE FINISHED: MrYoda Diagnostics API Test Suite
+2025-12-11 12:40:46 [main] INFO  com.mryoda.diagnostics.api.utils.LoggerUtil - ========================================
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 31.27 s -- in TestSuite
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  39.130 s
+[INFO] Finished at: 2025-12-11T12:40:46+05:30
+[INFO] ------------------------------------------------------------------------

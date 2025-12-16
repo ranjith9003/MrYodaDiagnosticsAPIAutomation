@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="MrYoda Diagnostics - Complete Flow Suite" verbose="1" thread-count="1">
+
+	<listeners>
+		<listener class-name="com.mryoda.diagnostics.api.listeners.TestListener" />
+	</listeners>
+
+	<!-- Complete Flow Tests - Executes all user flows end-to-end -->
+	<test name="Complete Flow Tests - All User Types">
+		<classes>
+			<class name="com.mryoda.diagnostics.api.tests.CompleteFlowTest">
+				<methods>
+					<!-- Execute flows in sequence -->
+					<include name="testCompleteMemberFlow" />
+					<include name="testCompleteExistingMemberFlow" />
+					<include name="testCompleteNewUserFlow" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>

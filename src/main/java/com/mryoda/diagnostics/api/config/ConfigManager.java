@@ -37,4 +37,10 @@ public interface ConfigManager extends Config {
 	@Key("enable.logging")
 	@DefaultValue("true")
 	boolean enableLogging();
+
+	@Key("razorpay.key")
+	String razorpayKey();
+
+	@Key("razorpay.secret")
+	String razorpaySecret();
 }

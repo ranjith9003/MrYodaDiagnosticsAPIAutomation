@@ -12,14 +12,15 @@ public class LoginAPITest extends BaseTest {
 	public void testLoginWithOTP() {
 
 	    System.out.println("\n╔══════════════════════════════════════════════════════════╗");
-	    System.out.println("║            MEMBER LOGIN TEST                             ║");
+	    System.out.println("║            MEMBER LOGIN TEST (Paid Member)               ║");
 	    System.out.println("╚══════════════════════════════════════════════════════════╝");
 	    
-	    String mobile = ConfigLoader.getConfig().memberMobile();
+	    String mobile = ConfigLoader.getConfig().memberMobile(); // 9003730394 - Paid member
 	    String token = TokenManager.generateToken(mobile, TokenManager.MEMBER);
 
 	    System.out.println("🟢 MEMBER LOGIN SUCCESS");
 	    System.out.println("   Token: " + token);
+	    System.out.println("   Mobile: 9003730394 (Paid member - gets 10% discount)");
 	    System.out.println("   Stored in: RequestContext.getMemberToken()");
 	    System.out.println("   First Name: " + RequestContext.getMemberFirstName());
 	    System.out.println("   Last Name: " + RequestContext.getMemberLastName());
@@ -27,21 +28,22 @@ public class LoginAPITest extends BaseTest {
 	}
 
 	@Test(priority = 1)
-	public void testLoginWithOTP_ExistingMember() {
+	public void testLoginWithOTP_NonMember() {
 
 	    System.out.println("\n╔══════════════════════════════════════════════════════════╗");
-	    System.out.println("║         EXISTING MEMBER LOGIN TEST                       ║");
+	    System.out.println("║         NON-MEMBER LOGIN TEST (No Membership)            ║");
 	    System.out.println("╚══════════════════════════════════════════════════════════╝");
 	    
-	    String mobile = ConfigLoader.getConfig().nonMemberMobile();
-	    String token = TokenManager.generateToken(mobile, TokenManager.EXISTING_MEMBER);
+	    String mobile = ConfigLoader.getConfig().nonMemberMobile(); // 8220220227 - NOT a paid member
+	    String token = TokenManager.generateToken(mobile, TokenManager.NON_MEMBER);
 
-	    System.out.println("🟢 EXISTING MEMBER LOGIN SUCCESS");
+	    System.out.println("🟢 NON-MEMBER LOGIN SUCCESS");
 	    System.out.println("   Token: " + token);
-	    System.out.println("   Stored in: RequestContext.getExistingMemberToken()");
-	    System.out.println("   First Name: " + RequestContext.getExistingMemberFirstName());
-	    System.out.println("   Last Name: " + RequestContext.getExistingMemberLastName());
-	    System.out.println("   User ID: " + RequestContext.getExistingMemberUserId());
+	    System.out.println("   Mobile: 8220220227 (NOT a paid member)");
+	    System.out.println("   Stored in: RequestContext.getNonMemberToken()");
+	    System.out.println("   First Name: " + RequestContext.getNonMemberFirstName());
+	    System.out.println("   Last Name: " + RequestContext.getNonMemberLastName());
+	    System.out.println("   User ID: " + RequestContext.getNonMemberUserId());
 	}
 
 	@Test(priority = 2,

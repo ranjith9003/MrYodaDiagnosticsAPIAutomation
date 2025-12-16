@@ -19,7 +19,7 @@ public class RequestBuilder {
     private String endpoint;
     private Object body;
     private final Map<String, String> headers = new HashMap<>();
-    private Map<String, ?> queryParams = new HashMap<>();
+    private final Map<String, Object> queryParams = new HashMap<>();
     private Integer expectedStatus = null;
     private final Map<String, Object> bodyParams = new HashMap<>();
 
@@ -64,7 +64,17 @@ public class RequestBuilder {
     }
 
     public RequestBuilder setQueryParams(Map<String, ?> params) {
-        this.queryParams = params;
+        this.queryParams.putAll(params);
+        return this;
+    }
+    
+    public RequestBuilder addQueryParam(String key, String value) {
+        this.queryParams.put(key, value);
+        return this;
+    }
+    
+    public RequestBuilder addQueryParam(String key, Object value) {
+        this.queryParams.put(key, value);
         return this;
     }
 
@@ -96,7 +106,7 @@ public class RequestBuilder {
     private RequestSpecification prepare() {
         RequestSpecification req = RestAssured.given()
                 .relaxedHTTPSValidation()
-                .log().ifValidationFails();
+                .log().all();  // 🔍 DEBUG: Log all request details
 
         if (!headers.isEmpty()) {
             req.headers(headers);
@@ -126,6 +136,13 @@ public class RequestBuilder {
         Response r = prepare().when().post(endpoint).then().extract().response();
         assertExpectedStatus(r);
         return r;
+    }
+
+    /**
+     * POST without automatic status check - useful when handling multiple valid status codes
+     */
+    public Response postWithoutStatusCheck() {
+        return prepare().when().post(endpoint).then().extract().response();
     }
 
     public Response get() {

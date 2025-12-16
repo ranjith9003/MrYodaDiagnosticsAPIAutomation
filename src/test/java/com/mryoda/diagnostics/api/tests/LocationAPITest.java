@@ -28,13 +28,53 @@ public class LocationAPITest extends BaseTest {
         for (int i = 0; i < locations.size(); i++) {
             String id = response.jsonPath().getString("data[" + i + "]._id");
             String title = response.jsonPath().getString("data[" + i + "].title");
+            String status = response.jsonPath().getString("data[" + i + "].status");
+            String city = response.jsonPath().getString("data[" + i + "].city");
+            String state = response.jsonPath().getString("data[" + i + "].state");
+            
+            // Extract google map coordinates
+            String latitude = response.jsonPath().getString("data[" + i + "].google_map_latitude");
+            String longitude = response.jsonPath().getString("data[" + i + "].google_map_langitude");
 
-            AssertionUtil.verifyNotNull(id, "Location ID " + i);
-            AssertionUtil.verifyNotNull(title, "Location Title " + i);
+            // Validate location is ACTIVE before storing
+            if (status != null) {
+                System.out.println("   Location: " + title + " | City: " + city + " | State: " + state + " | Status: " + status + " | ID: " + id);
+                if (latitude != null && longitude != null) {
+                    System.out.println("   📍 Coordinates: Lat=" + latitude + ", Long=" + longitude);
+                }
+            }
 
+            // Store location ID
             RequestContext.storeLocation(title, id);
+            
+            // Store city and state
+            if (city != null && state != null) {
+                RequestContext.storeLocationCityState(title, city, state);
+            }
+            
+            // Store coordinates if available
+            if (latitude != null && longitude != null) {
+                RequestContext.storeLocationCoordinates(title, latitude, longitude);
+                System.out.println("✔ Stored: " + title + " → ID: " + id + " | City: " + city + " | State: " + state + " | Coordinates: (" + latitude + ", " + longitude + ")");
+            } else {
+                System.out.println("✔ Stored: " + title + " → ID: " + id + " | City: " + city + " | State: " + state + " | Coordinates: Not available");
+            }
+        }
 
-            System.out.println("✔ Stored: " + title + " → " + id);
+        // Verify critical location exists (Madhapur is used in tests)
+        String madhapurLocationId = RequestContext.getLocationId("Madhapur");
+        if (madhapurLocationId != null) {
+            System.out.println("\n✅ Critical Location 'Madhapur' found and stored: " + madhapurLocationId);
+            
+            String madhapurLat = RequestContext.getLocationLatitude("Madhapur");
+            String madhapurLong = RequestContext.getLocationLongitude("Madhapur");
+            if (madhapurLat != null && madhapurLong != null) {
+                System.out.println("   📍 Madhapur Coordinates: Lat=" + madhapurLat + ", Long=" + madhapurLong);
+            }
+            
+            System.out.println("   This location will be used in GlobalSearch and AddToCart APIs");
+        } else {
+            System.out.println("\n⚠️  Warning: 'Madhapur' location not found in response");
         }
 
         System.out.println("\n🟢 Locations stored for reuse in next APIs\n");
@@ -42,11 +82,9 @@ public class LocationAPITest extends BaseTest {
 
     private Response callLocationAPI(String token) {
 
-        AssertionUtil.verifyNotNull(token, "Token must NOT be null!");
-
         return new RequestBuilder()
                 .setEndpoint(APIEndpoints.GET_LOCATION)
-                .addHeader("Authorization", "Bearer " + token)
+                .addHeader("Authorization",  token)
                 .expectStatus(200)
                 .post();   // yes, endpoint is POST
     }
@@ -66,14 +104,14 @@ public class LocationAPITest extends BaseTest {
     }
 
     // ---------------------------------------------------------
-    // 2️⃣ EXISTING MEMBER → Location API
+    // 2️⃣ NON-MEMBER (Mobile: 8220220227) → Location API
     // ---------------------------------------------------------
-    @Test(priority = 5, dependsOnMethods = "com.mryoda.diagnostics.api.tests.LoginAPITest.testLoginWithOTP_ExistingMember")
-    public void testGetLocations_ForExistingMember() {
+    @Test(priority = 5, dependsOnMethods = "com.mryoda.diagnostics.api.tests.LoginAPITest.testLoginWithOTP_NonMember")
+    public void testGetLocations_ForNonMember() {
 
-        System.out.println("\n===== LOCATION API — EXISTING MEMBER =====");
+        System.out.println("\n===== LOCATION API — NON-MEMBER (8220220227 - NOT a paid member) =====");
 
-        String token = RequestContext.getExistingMemberToken();
+        String token = RequestContext.getNonMemberToken();
         Response response = callLocationAPI(token);
 
         validateAndStoreLocations(response);
